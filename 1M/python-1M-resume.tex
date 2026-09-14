@@ -1,18 +1,37 @@
 % Geométrie de la page
 \documentclass[a4paper,12pt,twoside]{article}
 % \documentclass[a4paper,12pt]{article}
+
+% --- Packages ---
 \usepackage[T1]{fontenc}
 \usepackage[a4paper,top=2.5cm,bottom=3cm]{geometry}
 \usepackage{fancyhdr}
-\usepackage{listings}
 \setlength{\headheight}{14.5pt}
 \usepackage[french]{babel}
+\usepackage{listings}
 \usepackage{lmodern}
+
+% Style par défaut de tous les blocs lstlisting (voir Chapitres 1 à 6)
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,        % retour à la ligne automatique (évite les Overfull \hbox)
+    breakatwhitespace=false,
+    columns=fullflexible,   % espacement naturel de la police
+    keepspaces=true         % préserve les espaces multiples (alignement des # de commentaires)
+}
 % \usepackage{graphicx} % Required for inserting images
 \usepackage{tikz}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning}
 
-% Styles pour les schémas de flux
+% Redéfinition globale des puces par défaut
+% (via \AtBeginDocument car babel/french réinitialise les labels à \begin{document})
+\AtBeginDocument{
+    \renewcommand{\labelitemi}{\textbullet}    % Premier niveau : gros point noir
+    \renewcommand{\labelitemii}{\textendash}   % Deuxième niveau : tiret moyen
+}
+
+
+% --- Styles pour les schémas de flux (utilisés au Chapitre 5) ---
 \tikzset{
     startstop/.style={rectangle, rounded corners, minimum width=2.8cm, minimum height=1cm, text centered, draw=black, fill=red!20},
     decision/.style={diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!20},
@@ -20,17 +39,18 @@
     fleche/.style={thick,->,>=Stealth}
 }
 
-% Propriétés du document
+% --- Propriétés du document ---
 \author{Jonathan Vasseur}
 \title{Résumé python 1M}
 
-% % Headers and feet
+% --- En-tête et pied de page ---
 \pagestyle{fancy}
 \fancyhead{} % clear all header fields
 \fancyhead[CO,CE]{\textbf{1M-\the\year{}}}
 \fancyfoot{} % clear all footer fields
 \fancyfoot[LE,RO]{\thepage}
-% Groupes et commande custom
+
+% --- Environnement personnalisé pour le titre de la page de garde ---
 \newenvironment{ltitle}
      {\begin{center}\Huge}
      {\end{center}\par}
@@ -41,111 +61,119 @@
 Résumé Python 1M
     \end{ltitle}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 1                 % % 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        Chapitre 1                 % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Types}
+    % Tableau récapitulatif des 4 types de base et exemples de valeurs
     \begin{center}
     
-    \begin{tabular}{||c|c|c|c|c||}
-    % \multicolumn{5}{||c||}{\Large{Types}} \\
-    \hline \hline
-                &\textbf{Integer}  & \textbf{Float} & \textbf{String} & \textbf{Boolean} \\
-    \hline
-    Diminutif   & Int   & Float  & Str  & Bool \\
-    \hline
-Exemple     & 1     & 1.0    & "Bonjour" & True \\
-            & 0     & -2.5   & ""     & False   \\
-            & -5    & .5     & "123"  &         \\
-            & 45678 & 2.     & "123.5"&         \\
-            &       &1e5     &        &         \\
-    \hline \hline
-    \end{tabular}
+        \begin{tabular}{||c|c|c|c|c||}
+        % \multicolumn{5}{||c||}{\Large{Types}} \\
+        \hline \hline
+                    &\textbf{Integer}  & \textbf{Float} & \textbf{String} & \textbf{Boolean} \\
+        \hline
+        Diminutif   & Int   & Float  & Str  & Bool \\
+        \hline
+        Exemple     & 1     & 1.0    & "Bonjour" & True \\
+                    & 0     & -2.5   & ""     & False   \\
+                    & -5    & .5     & "123"  &         \\
+                    & 45678 & 2.     & "123.5"&         \\
+                    &       &1e5     &        &         \\
+        \hline \hline
+        \end{tabular}
     \end{center}
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 2                 % % 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        Chapitre 2                 % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Opérateurs et opérations}
-    \subsection*{Mathématiques}
-    \begin{tabular}{l c | l c}
-    Addition: & a+b &
-    Soustraction: & a-b \\ 
-    Division: & a/b &
-    Multiplication: & a*b  \\
-    Division entière: & a//b &
-    Modulo: & a\%b \\
-    Puissance:& a**b 
+
+    \subsection*{Mathématiques:}
+    \begin{tabular}{l l | l l}
+        Addition: & \texttt{a + b} &
+        Soustraction: & \texttt{a - b} \\ 
+        Division: & \texttt{a / b} &
+        Multiplication: & \texttt{a * b}  \\
+        Division entière: & \texttt{a // b} &
+        Modulo: & \texttt{a \% b} \\
+        Puissance:& \texttt{a ** b} 
     \end{tabular}
-    \subsection*{Logiques}
-    \begin{tabular}{l c | l c}
-    Plus grand que: & a > b &
-    Plus petit que: & a < b \\
-    Plus grand ou égal que: & a >= b &
-    Plus petit ou égal que: & a <= b \\
-    Égale à: & a == b &
-    Différent de: & a != b \\
-    Inverse: & not a &
-    Et logique: & a and b \\
-    Ou logique: & a or b &  \\
+
+    \subsection*{Logiques:}
+    \begin{tabular}{l l | l l}
+        Plus grand que: & \texttt{a > b} &
+        Plus petit que: & \texttt{a < b} \\
+        Plus grand ou égal que: & \texttt{a >= b} &
+        Plus petit ou égal que: & \texttt{a <= b} \\
+        Égale à: & \texttt{a == b} &
+        Différent de: & \texttt{a != b} \\
+        Inverse: & \texttt{not a} &
+        Et logique: & \texttt{a and b} \\
+        Ou logique: & \texttt{a or b} &  \\
     \end{tabular}
-    \subsection*{Affectation composée}
-    \begin{tabular}{l c | l c}
-    Addition: & a += b &
-    Soustraction: & a -= b \\
-    Multiplication: & a *= b &
-    Division: & a /= b \\
-    Division entière: & a //= b &
-    Modulo: & a \%= b \\
-    Puissance:& a **= b
+
+    \subsection*{Affectation:}
+    \begin{tabular}{l l}
+        Affectation: & \texttt{a = b} \\
+        Affectation par addition (incrémentation): & \texttt{a += b} \\
+        Affectation par soustraction (décrémentation): & \texttt{a -= b} \\
+        Affectation par multiplication: & \texttt{a *= b} \\
+        Affectation par division: & \texttt{a /= b} \\
+        Affectation par division entière: & \texttt{a //= b} \\
     \end{tabular}
-    \subsection*{Commentaires}
+
+    \subsection*{Commentaires:}
     Une ligne précédée de \texttt{\#} est ignorée par Python, elle sert à documenter le code.
     \begin{lstlisting}[language=Python]
     # Ceci est un commentaire
     \end{lstlisting}
-    \newpage
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 3                 % % 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-\section*{Entrée}
-    \subsection*{Fonction input}
-    \begin{lstlisting}
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        Chapitre 3                 % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Entrée}
+    % La fonction input() renvoie toujours une chaîne de caractères, d'où les conversions int()/float()
+    \subsection*{Fonction input:}
+    La fonction \texttt{input()} permet de lire une valeur entrée par l'utilisateur.
+    \begin{lstlisting}[language=Python]
     ma_chaine = input("Entrer du texte:\n")
     mon_nombre_entier = int(input("Entrer un nombre entier:\n"))
     mon_nombre_reel = float(input("Entrer un nombre reel:\n"))
     \end{lstlisting}
 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 4                 % % 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        Chapitre 4                 % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Sorties}
-        \subsection*{Affichage et formatage des chaines de caractères}
-        \begin{lstlisting}[language=Python]
+    \subsection*{Affichage et formatage des chaines de caractères:}
+    \begin{lstlisting}[language=Python]
     print(valeur1, valeur2, ..., sep=' ', end='\n')
-        \end{lstlisting}
-        Le paramètre \texttt{sep} est la chaîne de caractères insérée entre chaque
-        valeur, par défaut un espace.\\
-        Le paramètre \texttt{end} est la chaîne de caractères insérée après la
-        dernière valeur, par défaut un retour de ligne.\\
+    \end{lstlisting}
+    Le paramètre \texttt{sep} est la chaîne de caractères insérée entre chaque
+    valeur, par défaut un espace.\\
+    Le paramètre \texttt{end} est la chaîne de caractères insérée après la
+    dernière valeur, par défaut un retour de ligne.
 
-        \subsection*{Technique de concaténation}
-        \begin{lstlisting}[language=Python]
+    \subsection*{Technique de concaténation:}
+    \begin{lstlisting}[language=Python]
     chaine_concatenee = "Du texte" + chaine1 + str(nbre1) + chaine2 + ...
-        \end{lstlisting} 
+    \end{lstlisting} 
 
-        \subsection*{F-string}
-        \begin{lstlisting}[language=Python]
+    \subsection*{F-string:}
+    \begin{lstlisting}[language=Python]
     f"blablabla {chaine1} blablabla {nbre1}"
-        \end{lstlisting} 
+    \end{lstlisting} 
     \newpage
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 5                 % % 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        Chapitre 5                 % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Expressions conditionnelles}
-        \subsection*{Syntaxe}
-        \noindent Un bloc indenté n'est executé que \textbf{si et seulement si} la condition dont il dépend est \textbf{verifiée}.\\
-        \begin{lstlisting}[language=Python]
+    \subsection*{Syntaxe:}
+    \noindent Un bloc indenté n'est exécuté que \textbf{si et seulement si} la condition dont il dépend est \textbf{vérifiée}.
+    \begin{lstlisting}
     if <condition 1>:
         Instruction
         Instruction
@@ -158,8 +186,9 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
         Instruction
         Instruction
         ...
-        \end{lstlisting} 
-    \subsection*{Diagramme de flux}
+    \end{lstlisting} 
+
+    \subsection*{Diagramme de flux:}
     \begin{center}
     \begin{tikzpicture}[node distance=1.3cm and 2.2cm, every node/.style={font=\small}]
         \node (start) [startstop] {Début};
@@ -181,37 +210,87 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
         \draw [fleche] (instr3) -- (end);
     \end{tikzpicture}
     \end{center}
-\newpage
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 6                 % % 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \newpage
+
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        Chapitre 6                 % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Les boucles}
+    
+    % La fonction range() génère la séquence sans la stocker entièrement en mémoire
     \subsection*{La fonction range():}
-    La fonction \texttt{range()} permet de crée une séquence d'entier selon le modèle suivant:
+    \noindent La fonction \texttt{range()} permet de créer une séquence d'entier selon le modèle suivant:
+    \begin{center}
     \begin{lstlisting}[language=Python]
     range(start*,stop,step*)
     \end{lstlisting} 
-    \texttt{start}: Valeur initiale de la séquence (par défaut 0)
-    \texttt{stop}: Valeur limite d'arrêt (exclue)
-    \texttt{step}: Valeur du pas de la séquence (par défaut 1)
-    * paramètre optionnel
+    \end{center}
+    \begin{itemize}
+        \item \texttt{start}: Valeur initiale de la séquence (par défaut 0)
+        \item \texttt{stop}: Valeur limite d'arrêt (exclue)
+        \item \texttt{step}: Valeur du pas de la séquence (par défaut 1)
+        \item * paramètre optionnel
+    \end{itemize}
 
-    \subsection*{for}
+    \subsubsection*{Exemples:}
     \begin{lstlisting}[language=Python]
+    range(1,10,2)     # 1, 3, 5, 7, 9
+    range(10, 2, -2)  # 10, 8, 6, 4
+    range(2, 5)       # 2, 3, 4
+    range(5)          # 0, 1, 2, 3, 4
+    range(10, 5, -3)  # vide
+    range(1, 10, -3)  # vide
+    \end{lstlisting} 
+
+    \subsection*{La boucle for:}
+    \subsubsection*{Syntaxe:}
+    \begin{lstlisting}
         for <variable> in <sequence>:
             Instruction
             Instruction
         \end{lstlisting} 
-    
-    \subsection*{while}
-    \begin{lstlisting}[language=Python]
+    <variable> prend successivement toutes les valeurs de <sequence> et exécute le bloc indenté pour chacune d'elles.
+    \newpage
+
+    \subsection*{La boucle while:}
+    \subsubsection*{Syntaxe:}
+    \begin{lstlisting}
     <Initialisation de la condition>
     while <condition>:
         Instruction
         Instruction
         ...
     \end{lstlisting} 
-    Quelque part à l'intérieur du \texttt{while} la condition doit évoluer.
+    Attention: Quelque part à l'intérieur du \texttt{while} la condition doit évoluer afin de ne pas créer une boucle infinie.
+
+    \subsubsection*{Mettre fin à une boucle infinie:}
+    \begin{itemize}
+        \item Dans Thonny
+        \begin{itemize}
+            \item Cliquer sur le bouton rouge "Stop/Arrêter"
+            \item Ou appuyer sur Ctrl + F2
+        \end{itemize}
+        \item Dans Visual Studio Code
+        \begin{itemize}
+            \item Cliquer sur le bouton rouge "Stop/Arrêter"
+            \item Ou mettre le focus sur le terminal et appuyer sur Ctrl + C
+        \end{itemize}
+    \end{itemize}
+    
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    % %                        DIVERS.                    % % 
+    % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Combinaison de touches pour la programation python sur MacOS:}
+    \begin{tabular}{l l | l l}
+        \texttt{\#}: & \texttt{alt + 3} &
+        \texttt{\textbackslash} : & \texttt{alt + 8}\\ 
+        \texttt{\lbrack} : & \texttt{alt + 5} &
+        \texttt{\rbrack} : & \texttt{alt + 6} \\
+        \texttt{\textbraceleft} : & \texttt{alt + 8} &
+        \texttt{\textbraceright} : & \texttt{alt + 9} \\
+    \end{tabular}
+    \pagebreak
+    
     \end{document}
 
 
