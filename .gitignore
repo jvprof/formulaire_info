@@ -61,3 +61,6 @@
 
 # Fichiers de sortie
 *.pdf
+
+# VS Code
+.vscode/
