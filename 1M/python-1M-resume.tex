@@ -1,0 +1,200 @@
+% Geométrie de la page
+\documentclass[a4paper,12pt,twoside]{article}
+% \documentclass[a4paper,12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,top=2.5cm,bottom=3cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{listings}
+% \setlength{\headheight}{15pt}
+\usepackage[french]{babel}
+\usepackage{lmodern}
+% \usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+% Styles pour les schémas de flux
+\tikzset{
+    startstop/.style={rectangle, rounded corners, minimum width=2.8cm, minimum height=1cm, text centered, draw=black, fill=red!20},
+    decision/.style={diamond, aspect=2, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!20},
+    process/.style={rectangle, minimum width=2.8cm, minimum height=1cm, text centered, draw=black, fill=blue!20},
+    fleche/.style={thick,->,>=Stealth}
+}
+
+% Propriétés du document
+\author{Jonathan Vasseur}
+\title{Résumé python 1M}
+
+% % Headers and feet
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[CO,CE]{\textbf{1M-\the\year{}}}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[LE,RO]{\thepage}
+% Groupes et commande custom
+\newenvironment{ltitle}
+     {\begin{center}\Huge}
+     {\end{center}\par}
+
+% % Début du document.
+\begin{document}
+    \begin{ltitle}
+Résumé Python 1M
+    \end{ltitle}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% %                        Chapitre 1                 % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Types}
+    \begin{center}
+    
+    \begin{tabular}{||c|c|c|c|c||}
+    % \multicolumn{5}{||c||}{\Large{Types}} \\
+    \hline \hline
+                &\textbf{Integer}  & \textbf{Float} & \textbf{String} & \textbf{Boolean} \\
+    \hline
+    Diminutif   & Int   & Float  & Str  & Bool \\
+    \hline
+Exemple     & 1     & 1.0    & "Bonjour" & True \\
+            & 0     & -2.5   & ""     & False   \\
+            & -5    & .5     & "123"  &         \\
+            & 45678 & 2.     & "123.5"&         \\
+            &       &1e5     &        &         \\
+    \hline \hline
+    \end{tabular}
+    \end{center}
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% %                        Chapitre 3                 % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Opérateurs et opérations}
+    \subsection*{Mathématiques}
+    \begin{tabular}{l c | l c}
+    Addition: & a+b &
+    Soustraction: & a-b \\ 
+    Division: & a/b &
+    Multiplication: & a*b  \\
+    Division entière: & a//b &
+    Modulo: & a\%b \\
+    Puissance:& a**b 
+    \end{tabular}
+    \subsection*{Logiques}
+    \begin{tabular}{l c | l c}
+    Plus grand que: & a > b &
+    Plus petit que: & a < b \\
+    Plus grand ou égal que: & a >= b &
+    Plus petit ou égal que: & a <= b \\
+    Égale à: & a == b &
+    Différent de: & a != b \\
+    Inverse: & not a &  \\
+    \end{tabular}
+    \newpage
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% %                        Chapitre 3                 % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+\section*{Entrée}
+    \subsection*{Fonction input}
+    \begin{lstlisting}
+    ma_chaine = input("Entrer du texte:\n")
+    mon_nombre_entier = int(input("Entrer un nombre entier:\n"))
+    mon_nombre_reel = float(input("Entrer un nombre reel:\n"))
+    \end{lstlisting}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% %                        Chapitre 4                 % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Sorties}
+        \subsection*{Affichage et formatage des chaines de caractères}
+        \begin{lstlisting}[language=Python]
+    print(valeur1, valeur2, ..., sep=' ', end='\n')
+        \end{lstlisting}
+        Le paramètre \texttt{sep} est la chaîne de caractères insérée entre chaque
+        valeur, par défaut un espace.\\
+        Le paramètre \texttt{end} est la chaîne de caractères insérée après la
+        dernière valeur, par défaut un retour de ligne.\\
+
+        \subsection*{Technique de concaténation}
+        \begin{lstlisting}[language=Python]
+    chaine_concatenee = "Du texte" + chaine1 + str(nbre1) + chaine2 + ...
+        \end{lstlisting} 
+
+        \subsection*{F-string}
+        \begin{lstlisting}[language=Python]
+    f"blablabla {chaine1} blablabla {nbre1}"
+        \end{lstlisting} 
+    \newpage
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% %                        Chapitre 5                 % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Expressions conditionnelles}
+        
+        \begin{lstlisting}[language=Python]
+    if <condition 1>:
+        Instruction
+        Instruction
+        ...
+    elif <condition 2>:
+        Instruction
+        Instruction
+        ...
+    else:
+        Instruction
+        Instruction
+        ...
+        \end{lstlisting} 
+
+    \begin{center}
+    \begin{tikzpicture}[node distance=1.3cm and 2.2cm, every node/.style={font=\small}]
+        \node (start) [startstop] {Début};
+        \node (cond1) [decision, below=of start] {condition 1 ?};
+        \node (instr1) [process, right=of cond1] {Instruction(s)};
+        \node (cond2) [decision, below=of cond1] {condition 2 ?};
+        \node (instr2) [process, right=of cond2] {Instruction(s)};
+        \node (instr3) [process, below=of cond2] {Instruction(s) (else)};
+        \node (end) [startstop, below=of instr3] {Fin};
+
+        \draw [fleche] (start) -- (cond1);
+        \draw [fleche] (cond1) -- node[above] {Vrai} (instr1);
+        \draw [fleche] (cond1) -- node[left] {Faux} (cond2);
+        \draw [fleche] (cond2) -- node[above] {Vrai} (instr2);
+        \draw [fleche] (cond2) -- node[left] {Faux} (instr3);
+        % contournement à droite pour ne pas traverser la boite instr2
+        \draw [fleche] (instr1.east) -- ++(0.8,0) |- (end.east);
+        \draw [fleche] (instr2.east) -- ++(0.4,0) |- (end.east);
+        \draw [fleche] (instr3) -- (end);
+    \end{tikzpicture}
+    \end{center}
+\newpage
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+% %                        Chapitre 6                 % % 
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
+    \section*{Les boucles}
+    \subsection*{La fonction range():}
+    La fonction \texttt{range()} permet de crée une séquence d'entier selon le modèle suivant:
+    \begin{lstlisting}[language=Python]
+    range(start*,stop,step*)
+    \end{lstlisting} 
+    \texttt{start}: Valeur initiale de la séquence (par défaut 0)
+    \texttt{stop}: Valeur limite d'arrêt (exclue)
+    \texttt{step}: Valeur du pas de la séquence (par défaut 1)
+    * paramètre optionnel
+
+    \subsection*{for}
+    \begin{lstlisting}[language=Python]
+        for <variable> in <sequence>:
+            Instruction
+            Instruction
+        \end{lstlisting} 
+    
+    \subsection*{while}
+    \begin{lstlisting}[language=Python]
+    <Initialisation de la condition>
+    while <condition>:
+        Instruction
+        Instruction
+        ...
+    \end{lstlisting} 
+    Quelque part à l'intérieur du \texttt{while} la condition doit évoluer.
+    \end{document}
+\end{document}
+
+

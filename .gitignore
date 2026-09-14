@@ -1,0 +1,63 @@
+# Fichiers auxiliaires LaTeX
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.lb
+
+# Fichiers de compilation
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+
+# Bibliographie
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
+# Index
+*.idx
+*.ilg
+*.ind
+
+# Listings
+*.lol
+
+# Gloussaire
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.lzo
+*.lzs
+
+# Table des matières / sections
+*.ist
+*.acn
+*.acr
+*.alg
+
+# Beamer
+*.nav
+*.pre
+*.snm
+*.vrb
+
+# Divers
+*.xdv
+*.bak
+*~
+
+# Fichiers de sortie
+*.pdf
