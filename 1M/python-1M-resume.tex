@@ -5,7 +5,7 @@
 \usepackage[a4paper,top=2.5cm,bottom=3cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{listings}
-% \setlength{\headheight}{15pt}
+\setlength{\headheight}{14.5pt}
 \usepackage[french]{babel}
 \usepackage{lmodern}
 % \usepackage{graphicx} % Required for inserting images
@@ -63,7 +63,7 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
     \end{tabular}
     \end{center}
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% %                        Chapitre 3                 % % 
+% %                        Chapitre 2                 % % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Opérateurs et opérations}
     \subsection*{Mathématiques}
@@ -84,8 +84,25 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
     Plus petit ou égal que: & a <= b \\
     Égale à: & a == b &
     Différent de: & a != b \\
-    Inverse: & not a &  \\
+    Inverse: & not a &
+    Et logique: & a and b \\
+    Ou logique: & a or b &  \\
     \end{tabular}
+    \subsection*{Affectation composée}
+    \begin{tabular}{l c | l c}
+    Addition: & a += b &
+    Soustraction: & a -= b \\
+    Multiplication: & a *= b &
+    Division: & a /= b \\
+    Division entière: & a //= b &
+    Modulo: & a \%= b \\
+    Puissance:& a **= b
+    \end{tabular}
+    \subsection*{Commentaires}
+    Une ligne précédée de \texttt{\#} est ignorée par Python, elle sert à documenter le code.
+    \begin{lstlisting}[language=Python]
+    # Ceci est un commentaire
+    \end{lstlisting}
     \newpage
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -126,7 +143,8 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
 % %                        Chapitre 5                 % % 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
     \section*{Expressions conditionnelles}
-        
+        \subsection*{Syntaxe}
+        \noindent Un bloc indenté n'est executé que \textbf{si et seulement si} la condition dont il dépend est \textbf{verifiée}.\\
         \begin{lstlisting}[language=Python]
     if <condition 1>:
         Instruction
@@ -141,7 +159,7 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
         Instruction
         ...
         \end{lstlisting} 
-
+    \subsection*{Diagramme de flux}
     \begin{center}
     \begin{tikzpicture}[node distance=1.3cm and 2.2cm, every node/.style={font=\small}]
         \node (start) [startstop] {Début};
@@ -195,6 +213,5 @@ Exemple     & 1     & 1.0    & "Bonjour" & True \\
     \end{lstlisting} 
     Quelque part à l'intérieur du \texttt{while} la condition doit évoluer.
     \end{document}
-\end{document}
 
 
